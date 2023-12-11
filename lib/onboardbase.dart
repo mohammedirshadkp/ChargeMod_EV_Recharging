@@ -5,6 +5,7 @@ import 'package:irshad/core/Constants.dart';
 import 'package:irshad/core/global_variables.dart';
 import 'package:irshad/core/pallete.dart';
 import 'package:irshad/onboard_page2.dart';
+import 'login_page.dart';
 import 'onboard_page1.dart';
 import 'onboard_page3.dart';
 
@@ -46,9 +47,9 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
                           )
                         : InkWell(
                             onTap: () {
-                              ref
-                                  .read(selectedIndexProvider.notifier)
-                                  .goToNextPage();
+                              if (ref.watch(selectedIndex) > 0) {
+                                ref.read(selectedIndex.notifier).state--;
+                              }
                             },
                             child: const CircleAvatar(
                               radius: 28,
@@ -94,12 +95,12 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
                                               ? Icon(
                                                   Icons.circle,
                                                   color: Pallete.blackColor,
-                                                  size: 20,
+                                                  size: deviceHeight * 0.02,
                                                 )
-                                              : const Icon(
+                                              : Icon(
                                                   Icons.circle,
                                                   color: Pallete.blackColor,
-                                                  size: 12,
+                                                  size: deviceHeight * 0.012,
                                                 ),
                                         ],
                                       ),
@@ -113,54 +114,37 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
                     SizedBox(
                       width: deviceWidth * 0.05,
                     ),
-                    ref.watch(selectedIndex) == 3
-                        ? SizedBox()
-                        : InkWell(
-                            onTap: () {
-                              ref
-                                  .read(selectedIndexProvider.notifier)
-                                  .goToPreviousPage();
-                            },
-                            child: const CircleAvatar(
-                              radius: 28,
-                              backgroundColor: Pallete.secondaryColor,
-                              child: Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                color: Pallete.primaryColor,
-                              ),
-                            ),
-                          )
+                    InkWell(
+                      onTap: () {
+                        if (ref.watch(selectedIndex) < 2) {
+                          ref.read(selectedIndex.notifier).state++;
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Login(),
+                              ));
+                        }
+                      },
+                      child: const CircleAvatar(
+                        radius: 28,
+                        backgroundColor: Pallete.secondaryColor,
+                        child: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Pallete.primaryColor,
+                        ),
+                      ),
+                    ),
                   ],
                 )
               ],
             ),
             ref.watch(selectedIndex) == 0 ? Scooter() : SizedBox(),
-            ref.watch(selectedIndex) == 0 ? Charger() : SizedBox(),
-            ref.watch(selectedIndex) == 1 ? Map() : SizedBox()
+            ref.watch(selectedIndex) == 1 ? Map() : SizedBox(),
+            ref.watch(selectedIndex) == 2 ? Charger2() : SizedBox()
           ],
         ),
       ),
     );
   }
 }
-
-class SelectedIndexNotifier extends StateNotifier<int> {
-  SelectedIndexNotifier() : super(0);
-
-  void goToNextPage() {
-    if (state < 2) {
-      state++;
-    }
-  }
-
-  void goToPreviousPage() {
-    if (state > 0) {
-      state--;
-    }
-  }
-}
-
-final selectedIndexProvider =
-    StateNotifierProvider<SelectedIndexNotifier, int>((ref) {
-  return SelectedIndexNotifier();
-});

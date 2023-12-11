@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:irshad/core/Constants.dart';
+import 'package:irshad/core/global_variables.dart';
 
 class OnBoard1 extends StatefulWidget {
   const OnBoard1({Key? key}) : super(key: key);
@@ -13,14 +14,14 @@ class _OnBoard1State extends State<OnBoard1> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: deviceHeight * 0.015,
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(deviceHeight * 0.02),
               child: Text(
                 "SKIP",
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -28,23 +29,23 @@ class _OnBoard1State extends State<OnBoard1> {
             ),
           ],
         ),
-        const SizedBox(
-          height: 50,
+        SizedBox(
+          height: deviceHeight * 0.08,
         ),
         Center(
           child: SvgPicture.asset(
             Constants.atyourefingertips,
             // color: Colors.yellow,
-            width: 220,
+            width: deviceWidth * 0.5,
           ),
         ),
-        const SizedBox(
-          height: 380,
+        SizedBox(
+          height: deviceHeight * 0.46,
         ),
         const Text("Scan Charge And Go"),
         const Text("Effortless Charging Schemas"),
         SizedBox(
-          height: 30,
+          height: deviceHeight * 0.038,
         ),
       ],
     );
@@ -57,27 +58,11 @@ class Scooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 270,
-      left: -140,
+      bottom: deviceHeight * 0.32,
+      left: -deviceWidth * 0.35,
       child: SvgPicture.asset(
-        Constants.scooter,
-        width: 400,
-      ),
-    );
-  }
-}
-
-class Charger extends StatelessWidget {
-  const Charger({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      right: 25,
-      bottom: 350,
-      child: SvgPicture.asset(
-        Constants.charger,
-        width: 200,
+        Constants.scootercharger,
+        width: deviceWidth * 1.28,
       ),
     );
   }

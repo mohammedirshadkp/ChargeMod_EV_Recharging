@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'core/Constants.dart';
+import 'core/global_variables.dart';
 
 class OnBoard2 extends StatefulWidget {
   const OnBoard2({super.key});
@@ -13,14 +14,14 @@ class _OnBoard2State extends State<OnBoard2> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: deviceHeight * 0.015,
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(deviceHeight * 0.02),
               child: Text(
                 "SKIP",
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -28,24 +29,24 @@ class _OnBoard2State extends State<OnBoard2> {
             ),
           ],
         ),
-        const SizedBox(
-          height: 50,
+        SizedBox(
+          height: deviceHeight * 0.08,
         ),
         Center(
           child: SvgPicture.asset(
             Constants.travelRoute,
             // color: Colors.yellow,
-            width: 220,
+            width: deviceWidth * 0.5,
           ),
         ),
-        const SizedBox(
-          height: 380,
+        SizedBox(
+          height: deviceHeight * 0.46,
         ),
         const Text("Grab The Best In Class"),
         const Text("Digital Experience Crafted For"),
-        const Text("EV Drivers\n"),
+        const Text("EV Drivers"),
         SizedBox(
-          height: 30,
+          height: deviceHeight * 0.04,
         ),
       ],
     );
@@ -54,14 +55,13 @@ class _OnBoard2State extends State<OnBoard2> {
 
 class Map extends StatelessWidget {
   const Map({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 270,
+      bottom: deviceHeight * 0.32,
       child: SvgPicture.asset(
         Constants.map,
-        width: 300,
+        width: deviceWidth * 0.8,
       ),
     );
   }
