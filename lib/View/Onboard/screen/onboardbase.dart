@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:irshad/core/Constants.dart';
 import 'package:irshad/core/global_variables.dart';
 import 'package:irshad/core/pallete.dart';
-import 'package:irshad/onboard_page2.dart';
-import 'login_page.dart';
+import 'package:irshad/View/Onboard/screen/onboard_page2.dart';
+import '../../Login/screen/login_page.dart';
 import 'onboard_page1.dart';
 import 'onboard_page3.dart';
 
@@ -122,7 +122,7 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => Login(),
+                                builder: (context) => RegistrationPage(),
                               ));
                         }
                       },

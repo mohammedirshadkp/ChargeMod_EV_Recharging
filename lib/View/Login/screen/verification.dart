@@ -3,7 +3,13 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../controller/login_page_controller.dart';
+import 'login_page.dart';
+
 class VerificationPage extends StatefulWidget {
+  final LoginController loginController;
+  const VerificationPage({super.key, required this.loginController});
+
   @override
   _VerificationPageState createState() => _VerificationPageState();
 }
@@ -20,7 +26,7 @@ class _VerificationPageState extends State<VerificationPage> {
   }
 
   void startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (_timerSeconds > 0) {
           _timerSeconds--;
@@ -50,7 +56,7 @@ class _VerificationPageState extends State<VerificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Verification'),
+        title: const Text('Verification'),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -70,7 +76,7 @@ class _VerificationPageState extends State<VerificationPage> {
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       counter: Offstage(),
                       border: OutlineInputBorder(),
                     ),
@@ -93,7 +99,7 @@ class _VerificationPageState extends State<VerificationPage> {
                     onTap: () {
                       resendOtp();
                     },
-                    child: Text(
+                    child: const Text(
                       'Resend',
                       style: TextStyle(
                         fontSize: 16,
@@ -101,14 +107,14 @@ class _VerificationPageState extends State<VerificationPage> {
                       ),
                     ),
                   ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Implement verification logic here
-                // For demonstration, showing the OTP entered
+              onPressed: () async {
+                await widget.loginController.verifyOTP(
+                    phoneNumber.text, int.parse(_otpController.text));
                 print('Entered OTP: ${_otpController.text}');
               },
-              child: Text('Continue'),
+              child: const Text('Continue'),
             ),
           ],
         ),

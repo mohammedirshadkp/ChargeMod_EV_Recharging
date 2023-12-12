@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:irshad/core/pallete.dart';
-import 'package:irshad/onboard_page1.dart';
-import 'package:irshad/onboardbase.dart';
+import 'package:irshad/View/Onboard/screen/onboard_page1.dart';
+import 'package:irshad/View/Onboard/screen/onboardbase.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'core/Constants.dart';
