@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:irshad/View/UpdateProfile/screen/updateProfile.dart';
 
 import '../controller/login_page_controller.dart';
 import 'login_page.dart';
@@ -15,7 +16,10 @@ class VerificationPage extends StatefulWidget {
 }
 
 class _VerificationPageState extends State<VerificationPage> {
-  TextEditingController _otpController = TextEditingController();
+  TextEditingController _otpController1 = TextEditingController();
+  TextEditingController _otpController2 = TextEditingController();
+  TextEditingController _otpController3 = TextEditingController();
+  TextEditingController _otpController4 = TextEditingController();
   int _timerSeconds = 30;
   late Timer _timer;
 
@@ -72,7 +76,7 @@ class _VerificationPageState extends State<VerificationPage> {
                   width: 50,
                   height: 50,
                   child: TextFormField(
-                    controller: _otpController,
+                    controller: _otpController1,
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
@@ -111,8 +115,13 @@ class _VerificationPageState extends State<VerificationPage> {
             ElevatedButton(
               onPressed: () async {
                 await widget.loginController.verifyOTP(
-                    phoneNumber.text, int.parse(_otpController.text));
-                print('Entered OTP: ${_otpController.text}');
+                    phoneNumber.text, int.parse(_otpController1.text));
+                print('Entered OTP: ${_otpController1.text}');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfileUpdatePage(),
+                    ));
               },
               child: const Text('Continue'),
             ),

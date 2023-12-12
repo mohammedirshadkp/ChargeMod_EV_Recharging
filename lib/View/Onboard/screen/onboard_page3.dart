@@ -54,17 +54,3 @@ class _OnBoard3State extends State<OnBoard3> {
     );
   }
 }
-
-class Charger2 extends StatelessWidget {
-  const Charger2({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      bottom: deviceHeight * 0.32,
-      child: SvgPicture.asset(
-        Constants.charger,
-        width: deviceWidth * 0.8,
-      ),
-    );
-  }
-}

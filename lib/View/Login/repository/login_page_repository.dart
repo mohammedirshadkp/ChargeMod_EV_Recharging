@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 
 final loginRepositoryProvider = Provider((ref) => LoginRepository());
@@ -28,26 +27,27 @@ class LoginRepository {
   }
 
   Future<Map<String, dynamic>> requestOTP(String phoneNumber) async {
+    // var request = http.Request(
+    //     'POST',
+    //     Uri.parse(
+    //         'https://as-uat.console.chargemod.com/temporary/sde1flutterATSR/64941897fdb322dbf94ad2b8/6494141957d29409895704d2/1.0.0/signIn'));
+    // request.body = '''{\r\n    "mobile":"7592072890"\r\n}''';
+    //
+    // http.StreamedResponse response = await request.send();
+    //
+    // if (response.statusCode == 200) {
+    //   return await response.stream.bytesToString();
+    // } else {
+    //   return response.reasonPhrase;
+    //   // return null;
+    // }
     try {
-      print('response');
-      print('response');
-      print('response');
-      print('response');
-      print('response');
       final endpoint = '$baseEndpoint/verify';
       print(endpoint);
       final response = await _makePostRequest(
         endpoint,
         {'mobile': phoneNumber},
       );
-
-      print(response.length.toString());
-      print(response.map.runtimeType);
-      print(response.toString());
-      print(response.size);
-      print('response');
-      print('response');
-      print(response);
       return response;
     } catch (e) {
       return {'error': e.toString()};

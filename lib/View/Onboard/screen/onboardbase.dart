@@ -122,7 +122,7 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => RegistrationPage(),
+                                builder: (context) => const Login(),
                               ));
                         }
                       },
@@ -144,6 +144,50 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
             ref.watch(selectedIndex) == 2 ? Charger2() : SizedBox()
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Charger2 extends StatelessWidget {
+  const Charger2({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: deviceHeight * 0.32,
+      child: SvgPicture.asset(
+        Constants.charger,
+        width: deviceWidth * 0.8,
+      ),
+    );
+  }
+}
+
+class Map extends StatelessWidget {
+  const Map({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: deviceHeight * 0.32,
+      child: SvgPicture.asset(
+        Constants.map,
+        width: deviceWidth * 0.8,
+      ),
+    );
+  }
+}
+
+class Scooter extends StatelessWidget {
+  const Scooter({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: deviceHeight * 0.32,
+      left: -deviceWidth * 0.35,
+      child: SvgPicture.asset(
+        Constants.scootercharger,
+        width: deviceWidth * 1.28,
       ),
     );
   }

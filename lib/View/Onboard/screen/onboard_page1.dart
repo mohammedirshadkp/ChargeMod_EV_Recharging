@@ -51,19 +51,3 @@ class _OnBoard1State extends State<OnBoard1> {
     );
   }
 }
-
-class Scooter extends StatelessWidget {
-  const Scooter({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      bottom: deviceHeight * 0.32,
-      left: -deviceWidth * 0.35,
-      child: SvgPicture.asset(
-        Constants.scootercharger,
-        width: deviceWidth * 1.28,
-      ),
-    );
-  }
-}

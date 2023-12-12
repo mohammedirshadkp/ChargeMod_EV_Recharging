@@ -52,17 +52,3 @@ class _OnBoard2State extends State<OnBoard2> {
     );
   }
 }
-
-class Map extends StatelessWidget {
-  const Map({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      bottom: deviceHeight * 0.32,
-      child: SvgPicture.asset(
-        Constants.map,
-        width: deviceWidth * 0.8,
-      ),
-    );
-  }
-}

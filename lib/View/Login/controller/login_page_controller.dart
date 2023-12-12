@@ -15,29 +15,15 @@ class LoginController extends StateNotifier<AsyncValue<Map<String, dynamic>>> {
 
   LoginController(this._repository) : super(const AsyncValue.loading());
 
-  Future<void> requestOTP(String phoneNumber) async {
+  Future<Map<String, dynamic>?> requestOTP(String phoneNumber) async {
     try {
       final result = await _repository.requestOTP(phoneNumber);
-      print('success');
-      print('success');
-      print('success');
-      print('success');
-      print('success');
-      print('success');
-      print('success');
-      print('success');
       state = AsyncValue.data(result);
+      return result;
     } catch (e, stackTrace) {
-      print('failed');
-      print('failed');
-      print('failed');
-      print('failed');
-      print('failed');
-      print('failed');
-      print('failed');
-      print('failed');
       state = AsyncValue.error(e, stackTrace);
     }
+    return null;
   }
 
   Future<void> verifyOTP(String phoneNumber, int otp) async {
