@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:irshad/core/Constants.dart';
-import 'package:irshad/core/global_variables.dart';
+import 'package:irshad/Core/Constants.dart';
+import 'package:irshad/Core/global_variables.dart';
 
 class OnBoard1 extends StatefulWidget {
   const OnBoard1({Key? key}) : super(key: key);

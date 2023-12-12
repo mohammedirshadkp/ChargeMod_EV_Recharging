@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'core/global_variables.dart';
+import 'Core/global_variables.dart';
 import 'splash_screen.dart';
 
 void main() {

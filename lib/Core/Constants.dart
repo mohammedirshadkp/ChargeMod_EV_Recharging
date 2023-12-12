@@ -9,5 +9,6 @@ class Constants {
   static const travelRoute = "assets/TravelRoute.svg";
   static const Realtime = "assets/Realtime.svg";
   static const charger2 = "assets/cha.svg";
+  static const light = "assets/Light.png";
   static const Letstatrtlogin = "assets/Letstatrtlogin.svg";
 }

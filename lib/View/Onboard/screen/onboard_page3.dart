@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../core/Constants.dart';
-import '../../../core/global_variables.dart';
+import '../../../Core/Constants.dart';
+import '../../../Core/global_variables.dart';
 
 class OnBoard3 extends StatefulWidget {
   const OnBoard3({super.key});

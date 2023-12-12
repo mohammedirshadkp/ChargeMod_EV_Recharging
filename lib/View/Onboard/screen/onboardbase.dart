@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:irshad/core/Constants.dart';
-import 'package:irshad/core/global_variables.dart';
-import 'package:irshad/core/pallete.dart';
+import 'package:irshad/Core/Constants.dart';
+import 'package:irshad/Core/global_variables.dart';
+import 'package:irshad/Core/pallete.dart';
 import 'package:irshad/View/Onboard/screen/onboard_page2.dart';
 import '../../Login/screen/login_page.dart';
 import 'onboard_page1.dart';

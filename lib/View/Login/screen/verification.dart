@@ -2,24 +2,26 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:irshad/View/UpdateProfile/screen/updateProfile.dart';
 
+import '../../home/screen/home_page.dart';
 import '../controller/login_page_controller.dart';
 import 'login_page.dart';
 
 class VerificationPage extends StatefulWidget {
   final LoginController loginController;
-  const VerificationPage({super.key, required this.loginController});
+  const VerificationPage({Key? key, required this.loginController})
+      : super(key: key);
 
   @override
   _VerificationPageState createState() => _VerificationPageState();
 }
 
 class _VerificationPageState extends State<VerificationPage> {
-  TextEditingController _otpController1 = TextEditingController();
-  TextEditingController _otpController2 = TextEditingController();
-  TextEditingController _otpController3 = TextEditingController();
-  TextEditingController _otpController4 = TextEditingController();
+  List<TextEditingController> otpControllers = List.generate(
+    4,
+    (index) => TextEditingController(),
+  );
+
   int _timerSeconds = 30;
   late Timer _timer;
 
@@ -42,8 +44,6 @@ class _VerificationPageState extends State<VerificationPage> {
   }
 
   void resendOtp() {
-    // Implement your resend OTP logic here
-    // For demonstration, resetting the timer to 30 seconds
     setState(() {
       _timerSeconds = 30;
       startTimer();
@@ -76,7 +76,7 @@ class _VerificationPageState extends State<VerificationPage> {
                   width: 50,
                   height: 50,
                   child: TextFormField(
-                    controller: _otpController1,
+                    controller: otpControllers[index],
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
@@ -114,14 +114,18 @@ class _VerificationPageState extends State<VerificationPage> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
-                await widget.loginController.verifyOTP(
-                    phoneNumber.text, int.parse(_otpController1.text));
-                print('Entered OTP: ${_otpController1.text}');
+                String enteredOtp = otpControllers
+                    .map((controller) => controller.text)
+                    .join(); // Join all OTP digit controllers
+                await widget.loginController
+                    .verifyOTP(phoneNumber.text, int.parse(enteredOtp));
+                print('Entered OTP: $enteredOtp');
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfileUpdatePage(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Homepage(),
+                  ),
+                );
               },
               child: const Text('Continue'),
             ),
