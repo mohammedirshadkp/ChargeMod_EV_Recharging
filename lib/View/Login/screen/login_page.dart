@@ -28,30 +28,35 @@ class _LoginState extends ConsumerState<Login> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Pallete.primaryColor,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              children: [
-                Center(
-                  child: SvgPicture.asset(
-                    Constants.Letstatrtlogin,
-                    width: deviceWidth * 0.6,
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: deviceHeight * 0.1,
                   ),
-                ),
-                MyForm(),
-              ],
-            ),
-            SizedBox(
-              height: deviceHeight * 0.1,
-            ),
-            const Column(
-              children: [
-                Text("By Continuing You Agree To Our"),
-                Text("Termas And Conditions  And Privacy And Policy"),
-              ],
-            )
-          ],
+                  Center(
+                    child: SvgPicture.asset(
+                      Constants.Letstatrtlogin,
+                      width: deviceWidth * 0.6,
+                    ),
+                  ),
+                  MyForm(),
+                ],
+              ),
+              SizedBox(
+                height: deviceHeight * 0.35,
+              ),
+              const Column(
+                children: [
+                  Text("By Continuing You Agree To Our"),
+                  Text("Termas And Conditions  And Privacy And Policy"),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -75,7 +80,7 @@ class _MyFormState extends ConsumerState<MyForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(40),
+      padding: EdgeInsets.all(deviceWidth * 0.1),
       child: Form(
         key: _formKey,
         child: Column(
@@ -121,11 +126,15 @@ class _MyFormState extends ConsumerState<MyForm> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Pallete.secondaryColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(deviceWidth * 0.02),
                   ),
                   width: deviceWidth * 0.8,
                   height: deviceHeight * 0.05,
-                  child: Center(child: Text('Send OTP')),
+                  child: const Center(
+                      child: Text(
+                    'Send OTP',
+                    style: TextStyle(color: Pallete.primaryColor),
+                  )),
                 ),
               ),
             ),

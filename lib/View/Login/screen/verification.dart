@@ -1,8 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:irshad/Core/global_variables.dart';
+import 'package:irshad/Core/pallete.dart';
 
 import '../../home/screen/home_page.dart';
 import '../controller/login_page_controller.dart';
@@ -59,78 +61,119 @@ class _VerificationPageState extends ConsumerState<VerificationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Verification'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(
-                4,
-                (index) => SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: TextFormField(
-                    controller: otpControllers[index],
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    maxLength: 1,
-                    decoration: const InputDecoration(
-                      counter: Offstage(),
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (value) {
-                      if (value.length == 1 && index < 3) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                  ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: deviceHeight * 0.12,
+          title: Text(
+            'Verification',
+            style: GoogleFonts.poppins(color: Pallete.blackColor),
+          ),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("We’ve send you the verification ",
+                    style: GoogleFonts.poppins(color: Pallete.blackColor)),
+                Text("code on +91 ${widget.phoneNumber}",
+                    style: GoogleFonts.poppins(color: Pallete.blackColor)),
+                SizedBox(
+                  height: deviceHeight * 0.15,
                 ),
-              ),
-            ),
-            SizedBox(height: 20),
-            _timerSeconds > 0
-                ? Text(
-                    'Resend in 00:${_timerSeconds.toString().padLeft(2, '0')}',
-                    style: TextStyle(fontSize: 16),
-                  )
-                : InkWell(
-                    onTap: () {
-                      resendOtp();
-                    },
-                    child: const Text(
-                      'Resend',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.blue,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(
+                    4,
+                    (index) => Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(
+                                0.0,
+                                0.0,
+                              ),
+                              blurRadius: 1.0,
+                              spreadRadius: 0.0,
+                            )
+                          ],
+                          color: Colors.white),
+                      width: 50,
+                      height: 50,
+                      child: TextFormField(
+                        // showCursor: false,
+                        mouseCursor: MaterialStateMouseCursor.clickable,
+                        controller: otpControllers[index],
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        maxLength: 1,
+                        decoration: const InputDecoration(
+                          counter: Offstage(),
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                        ),
+                        onChanged: (value) {
+                          if (value.length == 1 && index < 3) {
+                            FocusScope.of(context).nextFocus();
+                          }
+                        },
                       ),
                     ),
                   ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                String enteredOtp = otpControllers
-                    .map((controller) => controller.text)
-                    .join(); // Join all OTP digit controllers
-                await ref.watch(loginControllerProvider.notifier).verifyOTP(
-                    widget.phoneNumber.toString(), int.parse(enteredOtp));
-                print('Entered OTP: $enteredOtp');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Homepage(),
+                ),
+                const SizedBox(height: 20),
+                _timerSeconds > 0
+                    ? Text(
+                        'Resend in 00:${_timerSeconds.toString().padLeft(2, '0')}',
+                        style: GoogleFonts.poppins(
+                            color: Pallete.secondaryColor, fontSize: 17))
+                    : InkWell(
+                        onTap: () {
+                          resendOtp();
+                        },
+                        child: Text('Resend OTP',
+                            style: GoogleFonts.poppins(
+                                color: Pallete.secondaryColor, fontSize: 17)),
+                      ),
+                SizedBox(height: deviceHeight * 0.4),
+                InkWell(
+                  onTap: () async {
+                    String enteredOtp = otpControllers
+                        .map((controller) => controller.text)
+                        .join(); // Join all OTP digit controllers
+                    await ref.watch(loginControllerProvider.notifier).verifyOTP(
+                        widget.phoneNumber.toString(), int.parse(enteredOtp));
+                    print('Entered OTP: $enteredOtp');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Homepage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: deviceHeight * 0.06,
+                    width: deviceWidth * 0.7,
+                    decoration: BoxDecoration(
+                        color: Pallete.secondaryColor,
+                        borderRadius:
+                            BorderRadius.circular(deviceWidth * 0.05)),
+                    child: Center(
+                      child: Text('Continue',
+                          style:
+                              GoogleFonts.poppins(color: Pallete.primaryColor)),
+                    ),
                   ),
-                );
-              },
-              child: const Text('Continue'),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
