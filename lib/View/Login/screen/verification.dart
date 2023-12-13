@@ -2,21 +2,22 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../home/screen/home_page.dart';
 import '../controller/login_page_controller.dart';
 import 'login_page.dart';
 
-class VerificationPage extends StatefulWidget {
-  final LoginController loginController;
-  const VerificationPage({Key? key, required this.loginController})
+class VerificationPage extends ConsumerStatefulWidget {
+  final String phoneNumber;
+  const VerificationPage({Key? key, required this.phoneNumber})
       : super(key: key);
 
   @override
   _VerificationPageState createState() => _VerificationPageState();
 }
 
-class _VerificationPageState extends State<VerificationPage> {
+class _VerificationPageState extends ConsumerState<VerificationPage> {
   List<TextEditingController> otpControllers = List.generate(
     4,
     (index) => TextEditingController(),
@@ -117,8 +118,8 @@ class _VerificationPageState extends State<VerificationPage> {
                 String enteredOtp = otpControllers
                     .map((controller) => controller.text)
                     .join(); // Join all OTP digit controllers
-                await widget.loginController
-                    .verifyOTP(phoneNumber.text, int.parse(enteredOtp));
+                await ref.watch(loginControllerProvider.notifier).verifyOTP(
+                    widget.phoneNumber.toString(), int.parse(enteredOtp));
                 print('Entered OTP: $enteredOtp');
                 Navigator.push(
                   context,

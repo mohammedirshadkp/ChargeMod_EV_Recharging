@@ -18,7 +18,7 @@ class LoginController extends StateNotifier<AsyncValue<Map<String, dynamic>>> {
   Future<Map<String, dynamic>?> requestOTP(String phoneNumber) async {
     try {
       final result = await _repository.requestOTP(phoneNumber);
-      state = AsyncValue.data(result);
+      state = AsyncValue.data(result!);
       return result;
     } catch (e, stackTrace) {
       state = AsyncValue.error(e, stackTrace);

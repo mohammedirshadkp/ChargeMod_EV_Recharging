@@ -13,8 +13,6 @@ import '../../../Core/global_variables.dart';
 import '../controller/login_page_controller.dart';
 import '../repository/login_page_repository.dart';
 
-TextEditingController phoneNumber = TextEditingController();
-
 class Login extends ConsumerStatefulWidget {
   const Login({super.key});
 
@@ -41,9 +39,7 @@ class _LoginState extends ConsumerState<Login> {
                     width: deviceWidth * 0.6,
                   ),
                 ),
-                MyForm(
-                  loginController: _loginController,
-                ),
+                MyForm(),
               ],
             ),
             SizedBox(
@@ -63,15 +59,17 @@ class _LoginState extends ConsumerState<Login> {
 }
 
 class MyForm extends ConsumerStatefulWidget {
-  final LoginController loginController;
+  // final LoginController loginController;
 
-  const MyForm({Key? key, required this.loginController}) : super(key: key);
+  const MyForm({Key? key}) : super(key: key);
 
   @override
   _MyFormState createState() => _MyFormState();
 }
 
 class _MyFormState extends ConsumerState<MyForm> {
+  TextEditingController phoneNumber = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -113,7 +111,7 @@ class _MyFormState extends ConsumerState<MyForm> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => VerificationPage(
-                        loginController: widget.loginController,
+                        phoneNumber: phoneNumber.text,
                       ),
                     ),
                   );
