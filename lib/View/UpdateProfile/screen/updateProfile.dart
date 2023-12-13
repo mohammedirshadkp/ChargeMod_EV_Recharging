@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:irshad/Core/pallete.dart';
 
-class ProfileUpdatePage extends StatelessWidget {
-  @override
+class ProfileUpdatePage extends StatefulWidget {
+  const ProfileUpdatePage({super.key});
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Update Profile'),
+        title: const Text('Update Profile'),
         centerTitle: true,
       ),
       body: Padding(
@@ -15,6 +16,12 @@ class ProfileUpdatePage extends StatelessWidget {
         child: ProfileUpdateForm(),
       ),
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }
 
@@ -60,7 +67,7 @@ class _ProfileUpdateFormState extends State<ProfileUpdateForm> {
             children: [
               TextFormField(
                 controller: _firstNameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'First Name',
                   border: OutlineInputBorder(),
                 ),
@@ -71,10 +78,10 @@ class _ProfileUpdateFormState extends State<ProfileUpdateForm> {
                   return null;
                 },
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               TextFormField(
                 controller: _lastNameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Last Name',
                   border: OutlineInputBorder(),
                 ),
@@ -85,10 +92,10 @@ class _ProfileUpdateFormState extends State<ProfileUpdateForm> {
                   return null;
                 },
               ),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),

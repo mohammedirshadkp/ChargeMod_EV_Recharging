@@ -62,85 +62,6 @@ class _LoginState extends ConsumerState<Login> {
   }
 }
 
-//
-// class MyForm extends ConsumerStatefulWidget {
-//   final LoginController loginController;
-//
-//   const MyForm({super.key, required this.loginController});
-//   @override
-//   _MyFormState createState() => _MyFormState();
-// }
-//
-// class _MyFormState extends ConsumerState<MyForm> {
-//   final _formKey = GlobalKey<FormState>();
-//   String? _phoneNumber;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.all(40),
-//       child: Form(
-//         key: _formKey,
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             // Other form fields if needed...
-//             IntlPhoneField(
-//               controller: phoneNumber,
-//               decoration: const InputDecoration(
-//                 labelText: 'Phone Number',
-//                 border: OutlineInputBorder(),
-//               ),
-//               onChanged: (phone) {
-//                 setState(() {
-//                   _phoneNumber = phone.completeNumber;
-//                 });
-//               },
-//               initialCountryCode: 'IN', // Initial selection country code
-//               // autoValidate: true,
-//               validator: (value) {
-//                 if (value == null) {
-//                   return 'Please enter a valid phone number';
-//                 }
-//                 return null;
-//               },
-//             ),
-//             InkWell(
-//               onTap: () async {
-//                 if (_formKey.currentState!.validate()) {
-//                   // await widget.loginController.requestOTP(_phoneNumber!);
-//                   final response = ref
-//                       .read(loginControllerProvider.notifier)
-//                       .requestOTP(_phoneNumber!);
-//                   print(response.toString());
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(
-//                       builder: (context) => VerificationPage(
-//                         loginController: widget.loginController,
-//                       ),
-//                     ),
-//                   );
-//                 }
-//               },
-//               child: Center(
-//                 child: Container(
-//                   decoration: BoxDecoration(
-//                     color: Pallete.secondaryColor,
-//                     borderRadius: BorderRadius.circular(10),
-//                   ),
-//                   width: deviceWidth * 0.8,
-//                   height: deviceHeight * 0.05,
-//                   child: const Center(child: Text('Sent Otp')),
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 class MyForm extends ConsumerStatefulWidget {
   final LoginController loginController;
 
@@ -152,7 +73,6 @@ class MyForm extends ConsumerStatefulWidget {
 
 class _MyFormState extends ConsumerState<MyForm> {
   final _formKey = GlobalKey<FormState>();
-  String? _phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +91,7 @@ class _MyFormState extends ConsumerState<MyForm> {
               ),
               onChanged: (phone) {
                 setState(() {
-                  _phoneNumber = phone.completeNumber;
+                  phoneNumber = phone.completeNumber as TextEditingController;
                 });
               },
               initialCountryCode: 'IN',
@@ -187,7 +107,7 @@ class _MyFormState extends ConsumerState<MyForm> {
                 if (_formKey.currentState!.validate()) {
                   final response = await ref
                       .read(loginControllerProvider.notifier)
-                      .requestOTP(_phoneNumber!);
+                      .requestOTP(phoneNumber.text);
                   print(response.toString());
                   Navigator.push(
                     context,
