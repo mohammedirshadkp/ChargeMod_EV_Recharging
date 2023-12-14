@@ -147,15 +147,11 @@ class _VerificationPageState extends ConsumerState<VerificationPage> {
                     String enteredOtp = otpControllers
                         .map((controller) => controller.text)
                         .join(); // Join all OTP digit controllers
-                    await ref.watch(loginControllerProvider.notifier).verifyOTP(
-                        widget.phoneNumber.toString(), int.parse(enteredOtp));
+                    await ref.read(loginControllerProvider.notifier).verifyOTP(
+                        widget.phoneNumber.toString(),
+                        int.parse(enteredOtp),
+                        context);
                     print('Entered OTP: $enteredOtp');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Homepage(),
-                      ),
-                    );
                   },
                   child: Container(
                     height: deviceHeight * 0.06,

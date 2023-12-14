@@ -94,7 +94,9 @@ class _MyFormState extends ConsumerState<MyForm> {
               ),
               onChanged: (phone) {
                 setState(() {
-                  phoneNumber = phone.completeNumber as TextEditingController;
+                  phoneNumber.text = phone.completeNumber;
+                  print(phoneNumber.text);
+                  print('cccccccccccccccccccccccccccccc');
                 });
               },
               initialCountryCode: 'IN',
@@ -110,7 +112,7 @@ class _MyFormState extends ConsumerState<MyForm> {
                 if (_formKey.currentState!.validate()) {
                   final response = await ref
                       .read(loginControllerProvider.notifier)
-                      .requestOTP(phoneNumber.text);
+                      .requestOTP('7592072890');
                   print(response.toString());
                   Navigator.push(
                     context,
