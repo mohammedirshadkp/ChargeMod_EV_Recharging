@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'Core/Constants.dart';
 import 'Core/pallete.dart';
 import 'View/Onboard/screen/onboardbase.dart';
-// Other imports...
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,13 +22,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToNextPage() {
     Timer(
-      const Duration(seconds: 3), // Change the duration as needed
+      const Duration(seconds: 3),
       () {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                OnBoardBase(), // Replace this with your desired destination
+            builder: (context) => const OnBoardBase(),
           ),
         );
       },
@@ -46,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
           const SizedBox(height: 10),
           InkWell(
             onTap: () {
-              navigateToNextPage(); // Optionally, navigate immediately on tap
+              navigateToNextPage();
             },
             child: Center(
               child: SvgPicture.asset(
@@ -55,16 +53,16 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-          Column(
+          const Column(
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 220,
                 child: LinearProgressIndicator(
                   color: Pallete.secondaryColor,
                 ),
               ),
-              const SizedBox(height: 10),
-              const Text("Connecting To ChargeMod"),
+              SizedBox(height: 10),
+              Text("Connecting To ChargeMod"),
             ],
           ),
         ],

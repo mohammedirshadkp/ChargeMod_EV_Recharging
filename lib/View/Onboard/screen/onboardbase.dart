@@ -34,14 +34,14 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ref.watch(selectedIndex) == 0 ? OnBoard1() : SizedBox(),
-                ref.watch(selectedIndex) == 1 ? OnBoard2() : SizedBox(),
-                ref.watch(selectedIndex) == 2 ? OnBoard3() : SizedBox(),
+                ref.watch(selectedIndex) == 0 ? const OnBoard1() : SizedBox(),
+                ref.watch(selectedIndex) == 1 ? const OnBoard2() : SizedBox(),
+                ref.watch(selectedIndex) == 2 ? const OnBoard3() : SizedBox(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ref.watch(selectedIndex) == 0
-                        ? CircleAvatar(
+                        ? const CircleAvatar(
                             radius: 28,
                             backgroundColor: Colors.transparent,
                           )
@@ -139,9 +139,9 @@ class _OnBoard1State extends ConsumerState<OnBoardBase> {
                 )
               ],
             ),
-            ref.watch(selectedIndex) == 0 ? Scooter() : SizedBox(),
-            ref.watch(selectedIndex) == 1 ? Map() : SizedBox(),
-            ref.watch(selectedIndex) == 2 ? Charger2() : SizedBox()
+            ref.watch(selectedIndex) == 0 ? const Scooter() : SizedBox(),
+            ref.watch(selectedIndex) == 1 ? const Map() : SizedBox(),
+            ref.watch(selectedIndex) == 2 ? const Charger2() : SizedBox()
           ],
         ),
       ),

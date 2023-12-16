@@ -22,7 +22,7 @@ class _OnBoard1State extends State<OnBoard1> {
           children: [
             Padding(
               padding: EdgeInsets.all(deviceHeight * 0.02),
-              child: Text(
+              child: const Text(
                 "SKIP",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),

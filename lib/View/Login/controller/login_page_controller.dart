@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../home/screen/home_page.dart';
+import '../../../Core/utils.dart';
 import '../repository/login_page_repository.dart';
 
 final loginControllerProvider =
@@ -32,7 +31,6 @@ class LoginController extends StateNotifier<AsyncValue<Map<String, dynamic>>> {
       String phoneNumber, int otp, BuildContext context) async {
     try {
       final result = await _repository.verifyOTP(phoneNumber, otp, context);
-
       state = AsyncValue.data(result!);
     } catch (e, stackTrace) {
       state = AsyncValue.error(e, stackTrace);

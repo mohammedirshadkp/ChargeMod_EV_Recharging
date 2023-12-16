@@ -5,10 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:irshad/Core/global_variables.dart';
 import 'package:irshad/Core/pallete.dart';
-
-import '../../home/screen/home_page.dart';
 import '../controller/login_page_controller.dart';
-import 'login_page.dart';
 
 class VerificationPage extends ConsumerStatefulWidget {
   final String phoneNumber;
@@ -92,7 +89,7 @@ class _VerificationPageState extends ConsumerState<VerificationPage> {
                     (index) => Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.grey,
                               offset: Offset(
@@ -151,6 +148,7 @@ class _VerificationPageState extends ConsumerState<VerificationPage> {
                         widget.phoneNumber.toString(),
                         int.parse(enteredOtp),
                         context);
+                    print(widget.phoneNumber.toString());
                     print('Entered OTP: $enteredOtp');
                   },
                   child: Container(

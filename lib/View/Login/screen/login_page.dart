@@ -92,13 +92,6 @@ class _MyFormState extends ConsumerState<MyForm> {
                 labelText: 'Phone Number',
                 border: OutlineInputBorder(),
               ),
-              onChanged: (phone) {
-                setState(() {
-                  phoneNumber.text = phone.completeNumber;
-                  print(phoneNumber.text);
-                  print('cccccccccccccccccccccccccccccc');
-                });
-              },
               initialCountryCode: 'IN',
               validator: (value) {
                 if (value == null) {
@@ -112,7 +105,7 @@ class _MyFormState extends ConsumerState<MyForm> {
                 if (_formKey.currentState!.validate()) {
                   final response = await ref
                       .read(loginControllerProvider.notifier)
-                      .requestOTP('7592072890');
+                      .requestOTP(phoneNumber.text);
                   print(response.toString());
                   Navigator.push(
                     context,

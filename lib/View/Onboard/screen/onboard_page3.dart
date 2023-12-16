@@ -25,7 +25,7 @@ class _OnBoard3State extends State<OnBoard3> {
           children: [
             Padding(
               padding: EdgeInsets.all(deviceHeight * 0.02),
-              child: Text(
+              child: const Text(
                 "SKIP",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),

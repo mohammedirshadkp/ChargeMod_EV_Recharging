@@ -15,7 +15,7 @@ class _HomepageState extends State<Homepage> {
     const home(),
     const Activity(),
     const Community(),
-    ProfileUpdatePage(),
+    const ProfileUpdatePage(),
   ];
 
   @override
