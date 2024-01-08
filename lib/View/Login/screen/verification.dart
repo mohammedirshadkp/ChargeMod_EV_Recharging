@@ -150,18 +150,6 @@ class _VerificationPageState extends ConsumerState<VerificationPage> {
                         context);
                     print(widget.phoneNumber.toString());
                     print('Entered OTP: $enteredOtp');
-                    print(widget.phoneNumber.toString());
-                    print('Entered OTP: $enteredOtp');
-                    print(widget.phoneNumber.toString());
-                    print('Entered OTP: $enteredOtp');
-                    print(widget.phoneNumber.toString());
-                    print('Entered OTP: $enteredOtp');
-                    print(widget.phoneNumber.toString());
-                    print('Entered OTP: $enteredOtp');
-                    print(widget.phoneNumber.toString());
-                    print('Entered OTP: $enteredOtp');
-                    print(widget.phoneNumber.toString());
-                    print('Entered OTP: $enteredOtp');
                   },
                   child: Container(
                     height: deviceHeight * 0.06,
