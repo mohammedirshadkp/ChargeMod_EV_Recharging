@@ -143,11 +143,13 @@ class _VerificationPageState extends ConsumerState<VerificationPage> {
                   onTap: () async {
                     String enteredOtp = otpControllers
                         .map((controller) => controller.text)
-                        .join(); // Join all OTP digit controllers
+                        .join();
                     await ref.read(loginControllerProvider.notifier).verifyOTP(
                         widget.phoneNumber.toString(),
                         int.parse(enteredOtp),
                         context);
+                    print(widget.phoneNumber.toString());
+                    print('Entered OTP: $enteredOtp');
                     print(widget.phoneNumber.toString());
                     print('Entered OTP: $enteredOtp');
                   },
