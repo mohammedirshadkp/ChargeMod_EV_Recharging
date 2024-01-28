@@ -49,14 +49,13 @@ class LoginRepository {
         Map<String, dynamic> data = jsonDecode(responseBody);
         print("details");
         print(data);
-
         return data;
       } else {
         print('Error: ${response.reasonPhrase}');
         return null;
       }
     } catch (e) {
-      print('Exception: $e');
+      print('Excepton: $e');
       return null;
     }
   }
