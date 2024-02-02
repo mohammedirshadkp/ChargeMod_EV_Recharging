@@ -55,7 +55,7 @@ class LoginRepository {
         return null;
       }
     } catch (e) {
-      print('Excn: $e');
+      print('Execn: $e');
       return null;
     }
   }
