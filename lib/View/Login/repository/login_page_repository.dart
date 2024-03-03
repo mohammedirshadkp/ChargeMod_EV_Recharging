@@ -91,7 +91,7 @@ class LoginRepository {
         return null;
       }
     } catch (e) {
-      print('Exept0ion: $e');
+      print('Exeptiion: $e');
       return {'error': e.toString()};
     }
   }
