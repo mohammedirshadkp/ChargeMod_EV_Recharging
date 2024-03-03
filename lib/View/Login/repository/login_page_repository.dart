@@ -84,7 +84,7 @@ class LoginRepository {
             builder: (context) => Homepage(),
           ),
         );
-        print("Verfction successful");
+        print("Verifction successful");
         return data;
       } else {
         print('Error: ${response.reasonPhrase}');
