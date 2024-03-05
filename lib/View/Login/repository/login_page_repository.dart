@@ -115,7 +115,7 @@ class LoginRepository {
       );
       return response;
     } catch (e) {
-      return {'err': e.toString()};
+      return {'er': e.toString()};
     }
   }
 }
